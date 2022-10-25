@@ -4,7 +4,7 @@ const formRef = document.querySelector('.feedback-form');
 //const inputRef = document.querySelector('input');
 //const textareaRef = document.querySelector('textarea');
 
-const datesFormForLocalStor = {};
+const datesForm = {};
 
 const LOCAL_STORAGE_KEY = 'feedback-form-state';
 
@@ -14,9 +14,9 @@ formRef.addEventListener('submit', onFormSubmit);
 addContentForm();
 
 function onFormInput(evt) {
-  datesFormForLocalStor[evt.target.name] = evt.target.value;
+  datesForm[evt.target.name] = evt.target.value;
 
-  save(datesFormForLocalStor);
+  save(datesForm);
 }
 
 function save(object) {
@@ -34,9 +34,9 @@ function onFormSubmit(evt) {
 function addContentForm() {
   const valueKey = localStorage.getItem(LOCAL_STORAGE_KEY);
   if (valueKey) {
-    const parseValueKey = JSON.parse(valueKey);
+    const parsValueKey = JSON.parse(valueKey);
 
-    Object.entries(parseValueKey).forEach(([name, value]) => {
+    Object.entries(parsValueKey).forEach(([name, value]) => {
       datesFormForLocalStor[name] = value;
       formRef.elements[name].value = value;
     });
